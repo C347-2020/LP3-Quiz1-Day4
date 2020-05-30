@@ -104,11 +104,13 @@ public class MainActivity extends AppCompatActivity {
                 inboxS.setBigContentTitle("Inbox style");
                 inboxS.setSummaryText("List of entries");
 
+
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "default");
                 builder.setContentTitle("LP3 Quiz1");
                 builder.setContentText("Expand to see content");
                 builder.setSmallIcon(android.R.drawable.btn_star_big_off);
                 builder.setContentIntent(pIntent);
+                builder.setStyle(inboxS);
                 builder.setAutoCancel(true);
 
                 Notification n = builder.build();
