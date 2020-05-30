@@ -73,11 +73,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.koala);
+
                 NotificationCompat.Builder builder = new
                         NotificationCompat.Builder(MainActivity.this, "default");
                 builder.setContentTitle("LP3 Quiz1");
                 builder.setContentText("Expand to see picture");
                 builder.setSmallIcon(android.R.drawable.btn_star_big_off);
+                builder.setLargeIcon(image);
+                builder.setStyle(new NotificationCompat.BigPictureStyle()
+                        .bigPicture(image)
+                        .bigLargeIcon(null).setBigContentTitle("This is Big Picture\nKoala"));
                 builder.setContentIntent(pIntent);
                 builder.setAutoCancel(true);
 
