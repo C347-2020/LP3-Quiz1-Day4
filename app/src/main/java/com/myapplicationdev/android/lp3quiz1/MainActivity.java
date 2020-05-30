@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setLargeIcon(image);
                 builder.setStyle(new NotificationCompat.BigPictureStyle()
                         .bigPicture(image)
-                        .bigLargeIcon(null).setBigContentTitle("This is Big Picture\nKoala"));
+                        .bigLargeIcon(null).setSummaryText("This is Big Picture\nKoala"));
                 builder.setContentIntent(pIntent);
                 builder.setAutoCancel(true);
 
