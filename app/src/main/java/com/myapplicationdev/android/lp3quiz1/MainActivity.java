@@ -43,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
             channel1.setDescription("This is for default notification");
             notificationManager.createNotificationChannel(channel1);
 
+            NotificationChannel channel2 = new
+                    NotificationChannel("market", "Marketing Channel",
+                    NotificationManager.IMPORTANCE_HIGH);
+
+            channel1.setDescription("This is for marketing notification");
+            notificationManager.createNotificationChannel(channel2);
+
         }
 
         Intent intent = new Intent(MainActivity.this, MainActivity.class);
@@ -75,11 +82,16 @@ public class MainActivity extends AppCompatActivity {
 
                 NotificationCompat.Builder builder = new
                         NotificationCompat.Builder(MainActivity.this, "default");
-                builder.setContentTitle("LP3 Quiz1");
-                builder.setContentText("Expand to see picture");
+                builder.setContentTitle("This is Big Picture");
+                builder.setContentText("Koala!");
                 builder.setSmallIcon(android.R.drawable.btn_star_big_off);
                 builder.setContentIntent(pIntent);
                 builder.setAutoCancel(true);
+
+                Bitmap bm = BitmapFactory.decodeResource(MainActivity.this.getResources(), R.drawable.koala);
+                NotificationCompat.BigPictureStyle bp = new NotificationCompat.BigPictureStyle();
+                bp.bigPicture(bm);
+                builder.setStyle(bp);
 
                 Notification n = builder.build();
 
@@ -106,9 +118,9 @@ public class MainActivity extends AppCompatActivity {
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "default");
                 builder.setContentTitle("LP3 Quiz1");
-                builder.setContentText("Expand to see content");
                 builder.setSmallIcon(android.R.drawable.btn_star_big_off);
                 builder.setContentIntent(pIntent);
+                builder.setStyle(inboxS);
                 builder.setAutoCancel(true);
 
                 Notification n = builder.build();
