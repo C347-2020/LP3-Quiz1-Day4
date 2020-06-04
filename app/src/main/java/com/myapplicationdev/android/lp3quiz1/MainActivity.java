@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setAutoCancel(true);
 
                 Notification n = builder.build();
+                // simple things 
 
                 notificationManager.notify(notificationID, n);
                 finish();
