@@ -75,9 +75,14 @@ public class MainActivity extends AppCompatActivity {
 
                 NotificationCompat.Builder builder = new
                         NotificationCompat.Builder(MainActivity.this, "default");
-                builder.setContentTitle("LP3 Quiz1");
-                builder.setContentText("Expand to see picture");
+
+                NotificationCompat.BigPictureStyle bpStyle = new NotificationCompat.BigPictureStyle();
+                bpStyle.bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.koala)).build();
+
+                builder.setContentTitle("This is big picture");
+                builder.setContentText("Koala!");
                 builder.setSmallIcon(android.R.drawable.btn_star_big_off);
+                builder.setStyle(bpStyle);
                 builder.setContentIntent(pIntent);
                 builder.setAutoCancel(true);
 
@@ -98,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 al.add("This is the third line");
 
                 NotificationCompat.InboxStyle inboxS = new NotificationCompat.InboxStyle();
+
                 for (String tmp : al){ //iterate the entire ArrayList object and extract each element into variable tmp
                     inboxS.addLine(tmp);  //do something to the tmp, which is to retrive the value and place into Notification Inbox Style
                 };
@@ -107,6 +113,9 @@ public class MainActivity extends AppCompatActivity {
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "default");
                 builder.setContentTitle("LP3 Quiz1");
                 builder.setContentText("Expand to see content");
+
+                builder.setStyle(inboxS);
+
                 builder.setSmallIcon(android.R.drawable.btn_star_big_off);
                 builder.setContentIntent(pIntent);
                 builder.setAutoCancel(true);
