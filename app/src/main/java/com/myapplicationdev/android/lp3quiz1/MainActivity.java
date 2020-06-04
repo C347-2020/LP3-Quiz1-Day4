@@ -57,12 +57,13 @@ public class MainActivity extends AppCompatActivity {
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "default");
                 builder.setContentTitle("LP3 Quiz1");
-                builder.setContentText("This is a basic/simple notification");
+                builder.setContentText("This is a simple");
                 builder.setSmallIcon(android.R.drawable.btn_star_big_off);
                 builder.setContentIntent(pIntent);
                 builder.setAutoCancel(true);
 
                 Notification n = builder.build();
+                // simple things 
 
                 notificationManager.notify(notificationID, n);
                 finish();
@@ -73,13 +74,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                NotificationCompat.BigPictureStyle picStyle = new NotificationCompat.BigPictureStyle();
+                picStyle.bigPicture(BitmapFactory.decodeResource(getResources(),R.drawable.koala)).build();
+
                 NotificationCompat.Builder builder = new
                         NotificationCompat.Builder(MainActivity.this, "default");
                 builder.setContentTitle("LP3 Quiz1");
-                builder.setContentText("Expand to see picture");
+                builder.setContentText("This is big Picture \nKoala");
                 builder.setSmallIcon(android.R.drawable.btn_star_big_off);
                 builder.setContentIntent(pIntent);
                 builder.setAutoCancel(true);
+                builder.setStyle(picStyle);
 
                 Notification n = builder.build();
 
@@ -110,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setSmallIcon(android.R.drawable.btn_star_big_off);
                 builder.setContentIntent(pIntent);
                 builder.setAutoCancel(true);
+                builder.setStyle(inboxS);
 
                 Notification n = builder.build();
 
