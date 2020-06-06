@@ -28,36 +28,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnBasic = (Button) findViewById(R.id.btnBasic);
-        btnPicture = (Button) findViewById(R.id.btnPicture);
-        btnInbox = (Button) findViewById(R.id.btnInbox);
-
-        final NotificationManager notificationManager = (NotificationManager)
-                getSystemService(NOTIFICATION_SERVICE);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel1 = new
-                    NotificationChannel("default", "Default Channel",
-                    NotificationManager.IMPORTANCE_DEFAULT);
-
-            channel1.setDescription("This is for default notification");
-            notificationManager.createNotificationChannel(channel1);
-
-        }
-
-        Intent intent = new Intent(MainActivity.this, MainActivity.class);
-        final PendingIntent pIntent = PendingIntent.getActivity (MainActivity.this, requestCode, intent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
-
-
+        btnBasic = findViewById(R.id.btnBasic);
+        btnPicture = findViewById(R.id.btnPicture);
+        btnInbox = findViewById(R.id.btnInbox);
 
         btnBasic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                final NotificationManager notificationManager = (NotificationManager)
+                        getSystemService(NOTIFICATION_SERVICE);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    NotificationChannel channel1 = new
+                            NotificationChannel("default", "Default Channel",
+                            NotificationManager.IMPORTANCE_DEFAULT);
+
+                    channel1.setDescription("This is for default notification");
+                    notificationManager.createNotificationChannel(channel1);
+                }
+
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                final PendingIntent pIntent = PendingIntent.getActivity(MainActivity.this, requestCode, intent,
+                        PendingIntent.FLAG_CANCEL_CURRENT);
+
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "default");
                 builder.setContentTitle("LP3 Quiz1");
-                builder.setContentText("This is a basic/simple notification");
+                builder.setContentText("This is simple");
                 builder.setSmallIcon(android.R.drawable.btn_star_big_off);
                 builder.setContentIntent(pIntent);
                 builder.setAutoCancel(true);
@@ -73,16 +70,36 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                final NotificationManager notificationManager = (NotificationManager)
+                        getSystemService(NOTIFICATION_SERVICE);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    NotificationChannel channel1 = new
+                            NotificationChannel("default", "Default Channel",
+                            NotificationManager.IMPORTANCE_DEFAULT);
+
+                    channel1.setDescription("This is for default notification");
+                    notificationManager.createNotificationChannel(channel1);
+                }
+
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                final PendingIntent pIntent = PendingIntent.getActivity(MainActivity.this, requestCode, intent,
+                        PendingIntent.FLAG_CANCEL_CURRENT);
+
+                Bitmap bm = BitmapFactory.decodeResource(MainActivity.this.getResources(), R.drawable.koala);
+                NotificationCompat.BigPictureStyle bigp = new NotificationCompat.BigPictureStyle();
+                bigp.bigPicture(bm);
+                bigp.setBigContentTitle("This is Big Picture");
+                bigp.setSummaryText("Koala!");
+
                 NotificationCompat.Builder builder = new
                         NotificationCompat.Builder(MainActivity.this, "default");
-                builder.setContentTitle("LP3 Quiz1");
-                builder.setContentText("Expand to see picture");
                 builder.setSmallIcon(android.R.drawable.btn_star_big_off);
+                builder.setStyle(bigp);
                 builder.setContentIntent(pIntent);
                 builder.setAutoCancel(true);
 
                 Notification n = builder.build();
-
                 notificationManager.notify(notificationID, n);
                 finish();
             }
@@ -92,32 +109,49 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                final NotificationManager notificationManager = (NotificationManager)
+                        getSystemService(NOTIFICATION_SERVICE);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    NotificationChannel channel1 = new
+                            NotificationChannel("default", "Default Channel",
+                            NotificationManager.IMPORTANCE_DEFAULT);
+
+                    channel1.setDescription("This is for default notification");
+                    notificationManager.createNotificationChannel(channel1);
+                }
+
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+                final PendingIntent pIntent = PendingIntent.getActivity(MainActivity.this, requestCode, intent,
+                        PendingIntent.FLAG_CANCEL_CURRENT);
+
                 ArrayList<String> al = new ArrayList<>();
+
                 al.add("This is the first line");
                 al.add("This is the second line");
                 al.add("This is the third line");
 
                 NotificationCompat.InboxStyle inboxS = new NotificationCompat.InboxStyle();
-                for (String tmp : al){ //iterate the entire ArrayList object and extract each element into variable tmp
+
+                for (String tmp : al) { //iterate the entire ArrayList object and extract each element into variable tmp
                     inboxS.addLine(tmp);  //do something to the tmp, which is to retrive the value and place into Notification Inbox Style
-                };
+                }
+
                 inboxS.setBigContentTitle("Inbox style");
                 inboxS.setSummaryText("List of entries");
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "default");
                 builder.setContentTitle("LP3 Quiz1");
                 builder.setContentText("Expand to see content");
+                builder.setStyle(inboxS);
                 builder.setSmallIcon(android.R.drawable.btn_star_big_off);
                 builder.setContentIntent(pIntent);
                 builder.setAutoCancel(true);
 
                 Notification n = builder.build();
-
                 notificationManager.notify(notificationID, n);
                 finish();
             }
         });
-
     }
-
 }
